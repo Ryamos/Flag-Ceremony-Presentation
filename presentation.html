@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hymns and National Anthems</title>
     <link rel="stylesheet" href="Style/presentation.css" />
-    <!-- Include Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    
   </head>
 
   <body>
@@ -14,20 +17,17 @@
     <div class="container">
       <div class="main-video">
         <h2 id="main-title">Select a Video</h2>
+        <div class="download-links" id="main-downloads"></div>
         <video id="main-video" controls>
           <source src="" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-
+        <div class="rolling-oath" id="rolling-oath"></div>
         <div class="download-section">
           <div class="controls">
-            <button id="prev-btn" onclick="prevVideo()" disabled>
-              &#9665;
-            </button>
-            <button id="next-btn" onclick="nextVideo()">&#9655;</button>
+            <button id="prev-btn" onclick="prevVideo()" disabled>⬅</button>
+            <button id="next-btn" onclick="nextVideo()">➡</button>
           </div>
-
-          <div class="download-links" id="main-downloads"></div>
         </div>
       </div>
 
@@ -37,26 +37,42 @@
     </div>
 
     <script>
-      const videos = [
+      const items = [
         {
+          type: "video",
           title: "Lupang Hinirang",
           videoSrc: "Asset/vids/1 - Lupang Hinirang.mp4",
           audioSrc: "Asset/audio/1 - Lupang Hinirang.mp3",
           lyricsSrc: "Asset/lyrics/Lupang Hinirang.pdf",
         },
         {
+          type: "document",
+          title: "PANUNUMPA SA WATAWAT NG PILIPINAS",
+          docSrc: "Asset/lyrics/Panunumpa Sa Watawat Ng Pilipinas.pdf",
+          oathText: `"Ako ay Pilipino, <br><br>
+                    taos pusong nanunumpa sa watawat ng Pilipinas, <br><br>
+                    at sa bansang Kanyang sinasagisag <br><br>
+                    na may dangal, katarungan at kalayaan; <br><br>
+                    na pinakikilos ng sambayanang <br><br>
+                    maka Diyos, makakalikasan, makatao, at makabansa."`,
+        },
+
+        {
+          type: "video",
           title: "Bagong Pilipinas Hymn",
           videoSrc: "Asset/vids/2 - Bagong Pilipinas Hymn.mp4",
           audioSrc: "Asset/audio/2 - Bagong Pilipinas Hymn.mp3",
           lyricsSrc: "Asset/lyrics/BAGONG PILIPINAS HYMN.pdf",
         },
         {
+          type: "video",
           title: "Lipeño Hymn",
           videoSrc: "Asset/vids/3 - Lipeño Hymn.mp4",
           audioSrc: "Asset/audio/3 - Lipeño Hymn.mp3",
           lyricsSrc: "Asset/lyrics/Lipeño Hymn.pdf",
         },
         {
+          type: "video",
           title: "University Hymn",
           videoSrc: "Asset/vids/4 - BatStateU Hymn.mp4",
           audioSrc: "Asset/audio/4 - BatStateU Hymn.mp3",
@@ -68,55 +84,120 @@
 
       function renderVideoList() {
         const videoList = document.getElementById("video-list");
-        videoList.innerHTML = videos
+        videoList.innerHTML = items
           .map(
-            (video, index) => `
-                <div class="song" onclick="changeMainVideo(${index})">
-                    <video>
-                        <source src="${video.videoSrc}" type="video/mp4">
-                    </video>
-                    <h3>${video.title}</h3>
+            (item, index) => `
+                <div class="song" id="song-${index}" onclick="changeMainItem(${index})">
+                    ${
+                      item.type === "video"
+                        ? `<video disablePictureInPicture controlsList="nodownload nofullscreen">
+                                <source src="${item.videoSrc}" type="video/mp4">
+                              </video>`
+                        : `<i class="fa-solid fa-file-pdf" style="font-size: 30px; color: red;"></i>`
+                    }
+                    <h3>${item.title}</h3>
                 </div>
             `
           )
           .join("");
       }
 
-      function changeMainVideo(index) {
-        currentIndex = index;
+      function changeMainItem(index) {
         let mainVideo = document.getElementById("main-video");
         let mainTitle = document.getElementById("main-title");
         let mainDownloads = document.getElementById("main-downloads");
+        let rollingOath = document.getElementById("rolling-oath");
         let prevBtn = document.getElementById("prev-btn");
         let nextBtn = document.getElementById("next-btn");
 
-        mainTitle.innerText = videos[index].title;
-        mainVideo.src = videos[index].videoSrc;
-        mainVideo.play();
+        // Stop any playing video
+        if (!mainVideo.paused) {
+          mainVideo.pause();
+        }
 
-        mainDownloads.innerHTML = `
-                <a href="${videos[index].videoSrc}" download>Download Video</a>
-                <a href="${videos[index].audioSrc}" download>Download Audio</a>
-                <a href="${videos[index].lyricsSrc}" download>Download Lyrics</a>
-            `;
+        // Remove 'active' class from all items
+        document
+          .querySelectorAll(".song")
+          .forEach((song) => song.classList.remove("active"));
 
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex === videos.length - 1;
+        // Add 'active' class to the selected item
+        document.getElementById(`song-${index}`).classList.add("active");
+
+        if (items[index].type === "video") {
+          // Show video, hide text
+          mainTitle.innerText = items[index].title;
+          mainVideo.src = items[index].videoSrc;
+          mainVideo.style.display = "block";
+          rollingOath.style.display = "none";
+          mainVideo.play();
+
+          mainDownloads.innerHTML = `
+            <a href="${items[index].videoSrc}" download>mp4</a>
+            <a href="${items[index].audioSrc}" download>mp3</a>
+            <a href="${items[index].lyricsSrc}" download>Lyrics</a>
+        `;
+        } else if (items[index].type === "document") {
+          // Hide video, show rolling text
+          mainTitle.innerText = items[index].title;
+          mainVideo.style.display = "none";
+          rollingOath.style.display = "block";
+
+          // Remove extra spaces and format text properly
+          let formattedOath = items[index].oathText.replace(/\s+/g, " ").trim();
+
+          // Insert formatted oath text into a scrolling div
+          rollingOath.innerHTML = `<div class="rolling-text">${formattedOath}</div>`;
+
+          mainDownloads.innerHTML = `
+            <a href="${items[index].docSrc}" download>Download PDF</a>
+        `;
+        }
+
+        // Disable/Enable navigation buttons
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === items.length - 1;
+
+        // Update current index
+        currentIndex = index;
       }
 
       function prevVideo() {
         if (currentIndex > 0) {
-          changeMainVideo(currentIndex - 1);
+          changeMainItem(currentIndex - 1);
         }
       }
 
       function nextVideo() {
-        if (currentIndex < videos.length - 1) {
-          changeMainVideo(currentIndex + 1);
+        if (currentIndex < items.length - 1) {
+          changeMainItem(currentIndex + 1);
         }
       }
 
       renderVideoList();
+
+      // pause and resume of rolling oath
+      document.addEventListener("DOMContentLoaded", function () {
+        const rollingOath = document.getElementById("rolling-oath");
+        const text = document.createElement("div");
+        text.classList.add("rolling-text");
+        rollingOath.appendChild(text);
+
+        let isPaused = false;
+
+        rollingOath.addEventListener("click", function () {
+          if (isPaused) {
+            text.style.animationPlayState = "running";
+          } else {
+            text.style.animationPlayState = "paused";
+          }
+          isPaused = !isPaused;
+        });
+
+        function setOathText(oath) {
+          text.innerText = oath;
+          rollingOath.style.display = "block";
+        }
+      });
     </script>
   </body>
 </html>

@@ -1,7 +1,6 @@
 body {
-  font-family: Arial, sans-serif;
-  background: url("../Asset/img/bsu_img.jpg") no-repeat center center
-    fixed;
+  font-family: "Poppins", sans-serif;
+  background: url("../Asset/img/bsu_img.jpg") no-repeat center center fixed;
   background-size: cover;
   color: #ffffff;
   margin: 0;
@@ -18,103 +17,53 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  /* Adjust 0.5 for transparency */
+  background: rgba(0, 0, 0, 0.6);
   z-index: -1;
 }
 
 h1 {
   text-align: left;
-  padding: 1px 0;
+  padding-left: 50px;
+  padding-top: 0;
   font-size: 2em;
-  width: 95%;
-  max-width: 1400px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  width: 100%;
+  color: #1db954;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-
 h2 {
-  color: #ffff;
+  text-align: left;
+  margin-top: 0;
+  font-size: 1em;
 }
 
 .container {
   display: flex;
   width: 100%;
   max-width: 1100px;
-  gap: 20px;
-  margin-bottom: 40px;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Main Video Section */
+.main-video {
+  flex: 3;
+  padding: 20px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .main-video {
   flex: 3;
   padding: 20px;
   text-align: center;
-  background: #000000;
-
-  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.side-videos {
-  color: #ffff;
-  flex: 1;
-  padding: 20px;
-  background: rgba(100, 100, 100, 0.5);
-
-  border-radius: 5px;
-  max-height: 500px;
-  overflow-y: auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.song {
-  background: rgba(0, 0, 0, 0.5);
-  /* Adjust the last value (0.5) for transparency */
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.song:hover {
-  background: #444;
-  transform: scale(1.02);
-}
-
-.song video {
-  width: 80px;
-  height: 50px;
-  border-radius: 5px;
-}
-
-.song h3 {
-  font-size: 1em;
-  flex: 1;
-}
-
-.download-links {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.download-links a {
-  color: #1db954;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 5px 10px;
-  border: 1px solid #1db954;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-.download-links a:hover {
-  background: #1db954;
-  color: black;
+  position: relative; /* Ensures h2 is positioned correctly */
 }
 
 video {
@@ -122,34 +71,119 @@ video {
   border-radius: 8px;
 }
 
-.instruction {
-  font-size: 1.2em;
-  font-weight: bold;
+/* Side Videos Section */
+.side-videos {
+  font-size: 0.8em;
+  flex: 1;
+  padding: 20px;
+  background: rgba(50, 50, 50, 0.7);
+  border-radius: 10px;
+  max-height: 500px;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.song {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
   margin-bottom: 10px;
-  color: #ddd;
-  animation: fadeIn 1s;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.subtitle {
-  font-size: 0.9em;
-  color: #bbb;
-  animation: fadeIn 1s;
+.song:hover {
+  background: #1db954;
+  transform: scale(1.05);
 }
 
+.song video {
+  width: 90px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.song h3 {
+  font-size: 1.1em;
+  flex: 1;
+  color: white;
+}
+
+/* Download Section */
+.download-section {
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Download Links - Positioned in the Upper Right */
+.download-section {
+  position: relative;
+}
+
+.download-links {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.download-links a {
+  color: #ffffff;
+  font-weight: italic;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid #12582a;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.download-links a i {
+  font-size: 1em;
+}
+
+.download-links a:hover {
+  background: rgb(32, 147, 43);
+  color: #07130b;
+}
+
+/* Adding icons for better UI */
+.download-links a::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f019"; /* Download icon */
+}
+
+/* Responsive: Stacks buttons on small screens */
+@media (max-width: 600px) {
+  .download-links {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Controls Section */
 .controls {
-  margin-top: 10px;
+  margin-top: 15px;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 .controls button {
   background: #1db954;
   border: none;
-  padding: 10px 20px;
-  font-size: 1em;
+  padding: 12px 20px;
+  font-size: 1.2em;
+  font-weight: bold;
   color: black;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s;
 }
@@ -161,4 +195,47 @@ video {
 .controls button:disabled {
   background: #555;
   cursor: not-allowed;
+}
+.rolling-oath {
+  display: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 10px;
+  background: #fffae6;
+  color: black;
+  border: 2px solid #030e02;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 10px;
+  height: 350px; /* Fixed height for scrolling */
+  overflow: hidden; /* Hide overflow */
+  position: relative;
+}
+
+.rolling-text {
+  position: absolute;
+  width: 100%;
+  white-space: nowrap; /* Prevent text wrapping */
+  animation: scrollText 15s linear infinite;
+  will-change: transform; /* Optimize animation */
+}
+
+@keyframes scrollText {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+/* Pause smoothly when hovered */
+.rolling-oath:hover .rolling-text {
+  animation-play-state: paused;
+}
+
+.song.active {
+  background-color: #03ba43; /* Yellow highlight */
+  border: 2px solid #0000; /* Orange border */
+  border-radius: 10px;
 }

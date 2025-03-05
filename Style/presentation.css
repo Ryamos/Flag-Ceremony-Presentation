@@ -20,18 +20,31 @@ body::before {
   background: rgba(0, 0, 0, 0.6);
   z-index: -1;
 }
-
-h1 {
-  text-align: left;
-  padding-left: 50px;
-  padding-top: 0;
-  font-size: 2em;
-  font-weight: bold;
-  margin-bottom: 20px;
+/* Top Bar Header */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  color: #1db954;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  height: 100px;
+
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+  color: white;
+
+  z-index: 100;
 }
+
+/* Logo in Header */
+.header-logo {
+  height: 85px;
+  margin-right: 15px;
+}
+
+
 h2 {
   text-align: left;
   margin-top: 0;

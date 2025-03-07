@@ -295,3 +295,17 @@ video {
   /* Orange border */
   border-radius: 10px;
 }
+
+.home-icon {
+  position: absolute;
+  left: 20px; /* Position on the left */
+  font-size: 2rem;
+  color: #03ba43;
+  text-decoration: none;
+  transition: transform 0.2s, color 0.3s;
+}
+
+.home-icon:hover {
+  transform: scale(1.2);
+  color: #03ba43;
+}

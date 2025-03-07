@@ -10,6 +10,17 @@ body {
   align-items: center;
 }
 
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+}
+
+.content {
+  overflow-y: auto;
+  height: 100vh;
+}
+
 body::before {
   content: "";
   position: absolute;
@@ -20,6 +31,7 @@ body::before {
   background: rgba(0, 0, 0, 0.6);
   z-index: -1;
 }
+
 /* Top Bar Header */
 .top-bar {
   position: fixed;
@@ -56,6 +68,7 @@ h2 {
   width: 100%;
   max-width: 1100px;
   gap: 10px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -76,7 +89,8 @@ h2 {
   background: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  position: relative; /* Ensures h2 is positioned correctly */
+  position: relative;
+  /* Ensures h2 is positioned correctly */
 }
 
 video {
@@ -170,7 +184,8 @@ video {
 .download-links a::before {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
-  content: "\f019"; /* Download icon */
+  content: "\f019";
+  /* Download icon */
 }
 
 /* Responsive: Stacks buttons on small screens */
@@ -209,38 +224,64 @@ video {
   background: #555;
   cursor: not-allowed;
 }
+
 .rolling-oath {
   display: none;
   font-size: 1.2em;
   font-weight: bold;
   padding: 10px;
-  background: #fffae6;
+  background: #fffae6; /* Light yellow background */
   color: black;
   border: 2px solid #030e02;
   border-radius: 10px;
   text-align: center;
   margin-top: 10px;
-  height: 350px; /* Fixed height for scrolling */
-  overflow: hidden; /* Hide overflow */
+  height: 350px; /* Fixed height to enable scrolling */
+  overflow-y: auto; /* Always show vertical scrollbar when needed */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
   position: relative;
 }
 
-.rolling-text {
-  position: absolute;
-  width: 100%;
-  white-space: nowrap; /* Prevent text wrapping */
-  animation: scrollText 25s linear infinite;
-  will-change: transform; /* Optimize animation */
+/* Custom Scrollbar Styling */
+.rolling-oath::-webkit-scrollbar {
+  width: 10px; /* Scrollbar width */
 }
 
+.rolling-oath::-webkit-scrollbar-track {
+  background: #fffae6; /* Same background as .rolling-oath */
+  border-radius: 10px;
+}
+
+.rolling-oath::-webkit-scrollbar-thumb {
+  background: #40403d; /* Slightly darker yellow for contrast */
+  border-radius: 10px;
+}
+
+.rolling-oath::-webkit-scrollbar-thumb:hover {
+  background: #40403d; /* Darker yellow on hover */
+}
+
+
+.rolling-text {
+  position: static;
+  /* Remove absolute positioning */
+  white-space: normal;
+  /* Allow text wrapping */
+  animation: none;
+  /* Disable animation */
+}
+
+/* Remove the keyframes animation */
 @keyframes scrollText {
   from {
-    transform: translateY(100%);
+    transform: none;
   }
+
   to {
-    transform: translateY(-100%);
+    transform: none;
   }
 }
+
 
 /* Pause smoothly when hovered */
 .rolling-oath:hover .rolling-text {
@@ -248,7 +289,9 @@ video {
 }
 
 .song.active {
-  background-color: #03ba43; /* Yellow highlight */
-  border: 2px solid #0000; /* Orange border */
+  background-color: #03ba43;
+  /* Yellow highlight */
+  border: 2px solid #0000;
+  /* Orange border */
   border-radius: 10px;
 }

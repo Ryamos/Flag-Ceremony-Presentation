@@ -103,10 +103,11 @@ p {
 }
 
 .slideshow-container {
-  margin-top: 100px;
+  margin-top: 70px;
   width: 90%;
   max-width: 900px;
-  height: 180px;
+  min-height: 150px; /* Ensures a reasonable starting height */
+  height: auto; /* Allows the container to grow */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,8 +122,12 @@ p {
 }
 
 .slide {
+  word-wrap: break-word; /* Breaks long words */
+  overflow-wrap: break-word;
+  text-align: center; /* Ensures proper alignment */
+  padding: 15px; /* Adds spacing for readability */
   display: none;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   animation: fadeIn 1s ease-in-out;
   width: 100%;
 }
@@ -145,5 +150,79 @@ p {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+  .btn {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+  }
+  .slideshow-container {
+    width: 95%;
+    height: auto;
+    padding: 20px;
+  }
+  .slide {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 60px;
+  }
+  .top-bar {
+    height: 80px;
+    padding: 0 20px;
+  }
+  .header-logo {
+    height: 65px;
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+  .btn {
+    font-size: 1rem;
+    padding: 8px 18px;
+  }
+  .slideshow-container {
+    width: 95%; /* Ensures the container scales properly */
+    padding: 15px;
+  }
+  .slide {
+    font-size: 1rem; /* Reduce font size for better fit */
+  }
+  .slide b {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .btn {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+  }
+  .top-bar {
+    height: 70px;
+  }
+  .header-logo {
+    height: 50px;
+  }
+  .slideshow-container {
+    padding: 10px;
+  }
+  .slide {
+    font-size: 0.9rem; /* Further reduce font size for mobile */
+  }
+  .slide b {
+    font-size: 1.2rem;
   }
 }

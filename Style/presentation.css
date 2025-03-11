@@ -54,6 +54,7 @@ body::before {
 .header-logo {
   height: 85px;
   margin-right: 15px;
+  padding-right: 80px;
 }
 
 

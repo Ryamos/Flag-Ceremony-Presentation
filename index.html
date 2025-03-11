@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flag Ceremony Official</title>
-    <link rel="stylesheet" href="Style/styles.css">
-    <link rel="icon" type="image/png" href="Asset/img/bsu_logo.png">
+    <link rel="stylesheet" href="Style/styles.css" />
+    <link rel="icon" type="image/png" href="Asset/img/bsu_logo.png" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <!--header-->
     <header class="top-bar">
-        <img src="Asset/img/topbar.png" alt="BSU Logo" class="header-logo">
+      <img src="Asset/img/topbar.png" alt="BSU Logo" class="header-logo" />
+      <div class="watermark">ICT Lipa Campus</div>
     </header>
-
+   
     <video autoplay muted loop class="video-bg">
-        <source src="Asset/vids/flag.mp4" type="video/mp4">
+      <source src="Asset/vids/flag.mp4" type="video/mp4" />
     </video>
-       
+
     <h1>Flag Ceremony Official</h1>
-    
+
     <a href="presentation.html" class="btn">Get Started</a>
 
     <div class="slideshow-container">
-        <div class="slide active"><b>UNIVERSITY MISSION</b><br>A university committed to producing leaders by providing a 21st-century learning environment through innovations in education, multidisciplinary research, and community and industry partnerships to nurture the spirit of nationhood, propel the national economy, and engage the world for sustainable development.</div>
-        <div class="slide"><b>UNIVERSITY VISION</b><br>A premier national university that develops leaders in the global knowledge economy.</div>
-        <div class="slide"><b>UNIVERSITY CORE VALUES</b><br>• Patriotism • Service • Integrity • Resilience • Excellence • Faith</div>
+      <div class="slide active">
+        <b>UNIVERSITY MISSION</b><br />A university committed to producing
+        leaders by providing a 21st-century learning environment through
+        innovations in education, multidisciplinary research, and community and
+        industry partnerships to nurture the spirit of nationhood, propel the
+        national economy, and engage the world for sustainable development.
+      </div>
+      <div class="slide">
+        <b>UNIVERSITY VISION</b><br />A premier national university that
+        develops leaders in the global knowledge economy.
+      </div>
+      <div class="slide">
+        <b>UNIVERSITY CORE VALUES</b><br />• Patriotism • Service • Integrity •
+        Resilience • Excellence • Faith
+      </div>
     </div>
 
     <script>
-        let slides = document.querySelectorAll('.slide');
-        let index = 0;
+      let slides = document.querySelectorAll(".slide");
+      let index = 0;
 
-        function showNextSlide() {
-            slides[index].classList.remove('active');
-            index = (index + 1) % slides.length;
-            slides[index].classList.add('active');
-        }
+      function showNextSlide() {
+        slides[index].classList.remove("active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("active");
+      }
 
-        setInterval(showNextSlide, 5000);
+      setInterval(showNextSlide, 5000);
     </script>
-</body>
-
-</html> 
+  </body>
+</html>
